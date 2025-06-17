@@ -1,0 +1,117 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 5,
+
+    "modules-left": ["hyprland/workspaces", "memory", "temperature", "custom/droidcam"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/weather", "wireplumber", "battery", "backlight", "network", "bluetooth", "tray"],
+
+   "hyprland/workspaces": {
+            "format": "{icon}",
+            "format-icons": {
+                "active": "",
+                "default": "",
+                "empty": ""
+            },
+            "persistent-workspaces": {
+                "*": [ 1,2,3,4,5,6,7,8,9 ]
+            }
+        },
+
+
+    "clock": {
+        "format": "{:%d %B %Y | %I:%M:%S %p}",
+       "on-click": "gnome-calendar",
+	 "interval": 1,   
+            "tooltip-format": "<tt>{calendar}</tt>",
+            "calendar": {
+                "format": {
+                    "today": "<span color='#965eed'><b>{}</b></span>"
+                }
+            },
+     
+        
+    },
+
+    "wireplumber": {
+        "format": "\udb81\udd7e  {volume}%",
+        "max-volume": 100,
+        "scroll-step": 5
+    },
+
+    "battery": {
+        "bat": "BAT1",
+        "interval": 60,
+        "format": "{icon}  {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+    },
+
+    "backlight": {
+        "format": "\udb80\udcdf  {percent}%"
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "\uf4bc  {used:0.1f}G",
+	"on-click": "kitty htop",
+    },
+
+    "temperature": {
+        "format": " {temperatureC}°C",
+	"thermal-zone": 1,
+	"interval": 10, 
+	"critical-threshold": 80,
+        "on-click": "gnome-system-monitor resources",
+    },
+
+	"custom/weather": {
+    "format": " {}",
+    "on-click": "gapplication launch org.gnome.Weather",
+    "tooltip": false,
+    "interval": 600,
+    "exec": "/home/kshiyo/.config/waybar/scripts/wttr-test.sh",
+},
+
+	"custom/droidcam": {
+    "format": "  {}  ",
+    "tooltip": false,
+    "interval": 5,
+    "exec": "/home/kshiyo/.config/waybar/scripts/droidcam-status.sh",
+    "on-click": "/home/kshiyo/.config/waybar/scripts/droidcam-toggle.sh"
+},
+
+
+    "network": {
+        "format": "",
+        "format-ethernet": "\udb83\udc9d",
+        "format-wifi": "{icon}",
+        "format-disconnected": "\udb83\udc9c",
+        "format-icons": ["\udb82\udd2f", "\udb82\udd1f", "\udb82\udd22", "\udb82\udd25", "\udb82\udd28"],
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+	"on-click": "kitty nmtui"
+    },
+
+    "bluetooth": {
+        "format": "\udb80\udcaf",
+        "format-disabled": "\udb80\udcb2",
+        "format-connected": "\udb80\udcb1",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"on-click": "blueman-manager",
+    },
+	
+
+    "hyprland/language": {
+        "format": "{short}"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 16
+    }
+}

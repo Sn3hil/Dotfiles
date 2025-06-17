@@ -1,0 +1,31 @@
+-- Message to confirm the script is loaded
+mp.osd_message("Script loaded. Press 'Alt+f' to freeze video and keep audio playing.")
+
+function freeze_video()
+    -- Debug: Key press detected
+    mp.osd_message("Alt+f pressed. Freezing video frame.")
+
+    -- Disable the video track to keep the last frame
+    local success = mp.set_property("vid", "no")
+    if success then
+        mp.osd_message("Video frame frozen. Audio continues.")
+    else
+        mp.osd_message("Failed to freeze video frame.")
+    end
+end
+
+function unfreeze_video()
+    -- Re-enable the video track
+    local success = mp.set_property("vid", "auto")
+    if success then
+        mp.osd_message("Video frame unfrozen. Resuming normal playback.")
+    else
+        mp.osd_message("Failed to unfreeze video frame.")
+    end
+end
+
+-- Bind keys:
+-- 'Alt+f' to freeze the video frame
+-- 'Alt+u' to unfreeze and restore normal playback
+mp.add_key_binding("Alt+f", "freeze_video", freeze_video)
+mp.add_key_binding("Alt+u", "unfreeze_video", unfreeze_video)
